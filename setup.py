@@ -7,26 +7,26 @@ import sys
 from codecs import open
 
 from setuptools import setup
-from setuptools.command.test import test as TestCommand
+#from setuptools.command.test import test as TestCommand
 
 
-class PyTest(TestCommand):
-    user_options = [('pytest-args=', 'a', "Arguments to pass into py.test")]
-
-    def initialize_options(self):
-        TestCommand.initialize_options(self)
-        self.pytest_args = []
-
-    def finalize_options(self):
-        TestCommand.finalize_options(self)
-        self.test_args = []
-        self.test_suite = True
-
-    def run_tests(self):
-        import pytest
-
-        errno = pytest.main(self.pytest_args)
-        sys.exit(errno)
+#class PyTest(TestCommand):
+#    user_options = [('pytest-args=', 'a', "Arguments to pass into py.test")]
+#
+#    def initialize_options(self):
+#        TestCommand.initialize_options(self)
+#        self.pytest_args = []
+#
+#    def finalize_options(self):
+#        TestCommand.finalize_options(self)
+#        self.test_args = []
+#        self.test_suite = True
+#
+#    def run_tests(self):
+#        import pytest
+#
+#        errno = pytest.main(self.pytest_args)
+#        sys.exit(errno)
 
 
 if sys.argv[-1] == 'publish':
@@ -45,7 +45,7 @@ packages = [
 ]
 
 requires = []
-test_requirements = ['pytest>=2.8.0', 'pytest-httpbin==0.0.7', 'pytest-cov']
+#test_requirements = ['pytest>=2.8.0', 'pytest-httpbin==0.0.7', 'pytest-cov']
 
 with open('requests/__init__.py', 'r') as fd:
     version = re.search(r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]',
@@ -89,8 +89,8 @@ setup(
         'Programming Language :: Python :: Implementation :: CPython',
         'Programming Language :: Python :: Implementation :: PyPy'
     ),
-    cmdclass={'test': PyTest},
-    tests_require=test_requirements,
+    #cmdclass={'test': PyTest},
+    #tests_require=test_requirements,
     extras_require={
         'security': ['pyOpenSSL>=0.13', 'ndg-httpsclient', 'pyasn1'],
         'socks': ['PySocks>=1.5.6, !=1.5.7'],
